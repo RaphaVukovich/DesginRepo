@@ -1,0 +1,43 @@
+/*Footlica — Soccer Jersey Website
+
+Description du projet
+
+Site web statique inspiré de mon prototype Figma "Footlica".
+C'est un site e-commerce de maillots de football avec une page d'accueil
+qui présente les produits, les catégories et les couleurs disponibles.
+
+Structure des fichiers
+
+footlica/
+├── index.html
+├── css/
+│   └── style.css
+└── README.css
+
+
+Utilisation de l'IA — Option B
+
+J'ai utilisé Claude (Anthropic) comme assistant.
+
+Prompts utilisés
+
+ Prompt  Ce que j'ai appris 
+
+ "Comment importer une Google Font en HTML ?"  `preconnect` accélère le chargement de la police 
+ "Comment mettre un badge rouge sur une icône ?"  `position: relative` sur le parent + `position: absolute` sur l'enfant 
+ "Comment faire un dropdown sans JavaScript ?" `.parent:hover .child { display: block }` 
+ "Comment faire 4 colonnes égales en CSS ?"  `display: grid` + `repeat(4, 1fr)` 
+ "Comment faire un header sticky ?"  `position: sticky` + `top: 0` + `z-index` 
+ Erreurs identifiées
+
+- Images manquantes : l'IA a utilisé des emojis 👕 à la place d'images réelles — pas adapté à un vrai e-commerce
+- Menu mobile non fonctionnel : la technique `:hover` ne fonctionne pas sur mobile (pas de survol tactile) — il faudrait JavaScript
+- Pas de ** : la grille 4 colonnes ne s'adapte pas aux petits écrans — il faudrait des `@media queries`
+
+ Ce que j'ai appris
+
+- Différence entre `margin` et `padding`
+- `display: flex` pour aligner sur une ligne, `display: grid` pour une grille
+- Variables CSS (`:root`) pour centraliser les couleurs
+- `position: absolute/relative` pour superposer des éléments
+/*
