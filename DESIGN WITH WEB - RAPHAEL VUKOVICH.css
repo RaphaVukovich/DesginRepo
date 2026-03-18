@@ -1,6 +1,9 @@
-/*Footlica — Soccer Jersey Website
+/*READ ME 
 
-Description du projet
+
+Footlica — Soccer Jersey Website
+
+
 
 Site web statique inspiré de mon prototype Figma "Footlica".
 C'est un site e-commerce de maillots de football avec une page d'accueil
@@ -21,14 +24,13 @@ J'ai utilisé Claude (Anthropic) comme assistant.
 
 Prompts utilisés
 
- Prompt  Ce que j'ai appris 
-
  "Comment importer une Google Font en HTML ?"  `preconnect` accélère le chargement de la police 
  "Comment mettre un badge rouge sur une icône ?"  `position: relative` sur le parent + `position: absolute` sur l'enfant 
  "Comment faire un dropdown sans JavaScript ?" `.parent:hover .child { display: block }` 
  "Comment faire 4 colonnes égales en CSS ?"  `display: grid` + `repeat(4, 1fr)` 
  "Comment faire un header sticky ?"  `position: sticky` + `top: 0` + `z-index` 
- Erreurs identifiées
+ 
+Erreurs identifiées
 
 - Images manquantes : l'IA a utilisé des emojis 👕 à la place d'images réelles — pas adapté à un vrai e-commerce
 - Menu mobile non fonctionnel : la technique `:hover` ne fonctionne pas sur mobile (pas de survol tactile) — il faudrait JavaScript
