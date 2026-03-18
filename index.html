@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footlica - Soccer Jerseys</title>
+
+  <!--
+    J'ai utilisé un chatbot pour savoir comment intégrer Google Fonts proprement.
+    "preconnect" établit la connexion au serveur en avance pour charger la police plus vite.
+    Prompt : "comment importer une Google Font dans un projet HTML ?"
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!--
+    J'ai utilisé un chatbot pour trouver comment ajouter des icônes sans les dessiner moi-même.
+    Font Awesome est une bibliothèque d'icônes qu'on intègre via un lien CDN.
+    Prompt : "comment utiliser des icônes de panier et de coeur en HTML sans images ?"
+    Les icônes s'utilisent ensuite avec des balises <i class="fas fa-..."></i>
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">⚽</span>
+        <span class="logo-text">Footlica</span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="search-bar">
+        <input type="text" placeholder="Search jerseys..." />
+        <!-- J'ai utilisé Font Awesome ici : fa-search génère l'icône loupe -->
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="header-icon">
+        <!-- fa-shopping-cart et fa-heart : icônes Font Awesome -->
+        <i class="fas fa-shopping-cart"></i>
+        <!--
+          Le badge "0" est positionné en haut à droite de l'icône.
+          J'ai utilisé un chatbot pour savoir comment faire ça.
+          Prompt : "comment mettre un petit badge rouge sur une icône en CSS ?"
+          → réponse : position: absolute sur le badge, position: relative sur le parent
+        -->
+        <span class="badge">0</span>
+        <span class="icon-label">My Cart</span>
+      </div>
+      <div class="header-icon">
+        <i class="fas fa-heart"></i>
+        <span class="icon-label">My Wishlist</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar">
+
+    <!--
+      Menu déroulant "All Categories" : il s'ouvre au survol sans JavaScript.
+      J'ai utilisé un chatbot pour savoir comment faire ça uniquement en CSS.
+      Prompt : "comment faire un menu dropdown qui s'ouvre au hover sans JS ?"
+      → réponse : cacher la liste par défaut avec display:none,
+        et l'afficher avec .parent:hover .dropdown { display: block }
+    -->
+    <div class="nav-categories">
+      <button class="categories-btn">
+        <i class="fas fa-bars"></i> All Categories
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">NBA</a></li>
+        <li><a href="#">Premier League</a></li>
+        <li><a href="#">Brasileiro Série A</a></li>
+        <li><a href="#">La Liga</a></li>
+        <li><a href="#">Serie A</a></li>
+        <li><a href="#">Ligue 1</a></li>
+        <li><a href="#">Bundesliga</a></li>
+        <li><a href="#">Other Clubs</a></li>
+        <li><a href="#">National Teams</a></li>
+      </ul>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">New Arrivals</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Player</a></li>
+      <li><a href="#">Retro</a></li>
+      <li><a href="#">Kids</a></li>
+      <li><a href="#">Tracksuit</a></li>
+      <li><a href="#">NBA</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <!--
+    La section hero est le grand bandeau en haut de page.
+    J'ai utilisé un chatbot pour savoir comment faire un fond dégradé.
+    Prompt : "comment faire un background avec un dégradé en CSS ?"
+    → réponse : linear-gradient() dans la propriété background
+    Le CSS est dans style.css section .hero
+  -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">New Season<br /><span>2025 - 2026</span></h1>
+      <p class="hero-subtitle">Authentic soccer jerseys from all major leagues</p>
+      <!-- href="#products" permet de scroller directement vers la section produits -->
+      <a href="#products" class="hero-btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- ========== PRODUITS ========== -->
+  <section class="products-section" id="products">
+    <h2 class="section-title">Featured Jerseys</h2>
+
+    <!-- La grille de produits : mise en page gérée en CSS avec display:grid -->
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-img" style="background-color: #1a237e;">
+          <span class="product-emoji">👕</span>
+          <span class="badge-new">NEW</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">25-26 PSG Third 1:1 Fans Soccer Jersey</p>
+          <p class="product-price">US$ 14.50</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background-color: #f9a825;">
+          <span class="product-emoji">👕</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">2008-2009 Villarreal Home Long Sleeve Retro Soccer</p>
+          <p class="product-price">US$ 20.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background-color: #f5f5f5;">
+          <span class="product-emoji">👕</span>
+          <span class="badge-new">NEW</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">1988-1990 Germany Home Retro Soccer Jersey</p>
+          <p class="product-price">US$ 19.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background-color: #b71c1c;">
+          <span class="product-emoji">👕</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">25-26 LIV Away 1:1 Fans Soccer Jersey</p>
+          <p class="product-price">US$ 14.50</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== COULEURS ========== -->
+  <section class="colors-section">
+    <h2 class="section-title">Shop by Color</h2>
+    <div class="colors-grid">
+      <div class="color-item">
+        <div class="color-swatch" style="background-color: #f5f5f5; border: 1px solid #ccc;"></div>
+        <span>White</span>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background-color: #2e5826;"></div>
+        <span>Green</span>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background-color: #1a237e;"></div>
+        <span>Navy Blue</span>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background-color: #b71c1c;"></div>
+        <span>Red</span>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background-color: #f57f17;"></div>
+        <span>Orange</span>
+      </div>
+      <div class="color-item">
+        <div class="color-swatch" style="background-color: #000000;"></div>
+        <span>Black</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p>© 2025 Footlica — All rights reserved</p>
+    <p>Modern | Accessible | Soccer Jerseys</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,442 @@
+/* ============================================================
+   FOOTLICA — style.css
+   ============================================================ */
+
+/*
+  Variables CSS : j'ai utilisé un chatbot pour savoir comment centraliser
+  les couleurs et les polices pour ne pas les réécrire partout.
+  Prompt : "comment éviter de répéter les mêmes couleurs dans tout mon CSS ?"
+  → réponse : utiliser des variables CSS dans :root avec --nom-variable
+  Ensuite on les utilise avec var(--nom-variable) n'importe où dans le fichier.
+*/
+:root {
+  --color-primary: #1a3c5e;
+  --color-accent: #e84040;
+  --color-bg: #fff5f5;
+  --color-text: #1a1a1a;
+  --color-text-light: #666;
+  --color-border: #e0e0e0;
+  --color-nav-bg: #1a3c5e;
+  --font-title: 'Oswald', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+}
+
+/* Reset : enlève les marges et paddings par défaut du navigateur */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ========== HEADER ========== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 30px;
+  background-color: white;
+  border-bottom: 2px solid var(--color-border);
+  /*
+    position: sticky fait que le header reste visible quand on scrolle.
+    J'ai utilisé un chatbot pour savoir comment faire ça.
+    Prompt : "comment faire que mon header reste en haut de la page quand on scrolle ?"
+    → réponse : position: sticky + top: 0 + z-index pour qu'il passe devant le contenu
+  */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+}
+
+.search-bar {
+  display: flex;
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+  overflow: hidden;
+  width: 400px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px 14px;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.search-btn {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.search-btn:hover {
+  background-color: #122d47;
+}
+
+.header-right {
+  display: flex;
+  gap: 24px;
+}
+
+.header-icon {
+  display: flex;
+  /*
+    flex-direction: column empile les éléments verticalement (icône, puis label en dessous).
+    Par défaut flex les met côte à côte, donc il fallait changer la direction.
+  */
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  position: relative; /* nécessaire pour positionner le badge en absolu par rapport à l'icône */
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  /*
+    transition : j'ai utilisé un chatbot pour savoir comment animer le changement de couleur.
+    Prompt : "comment faire que le changement de couleur au hover soit progressif et pas brutal ?"
+    → réponse : transition: color 0.2s (durée en secondes)
+  */
+  transition: color 0.2s;
+}
+
+.header-icon:hover {
+  color: var(--color-accent);
+}
+
+.icon-label {
+  font-size: 0.7rem;
+}
+
+/*
+  Badge du panier (le "0" rouge en haut à droite de l'icône).
+  J'ai utilisé un chatbot pour savoir comment le positionner exactement là.
+  Prompt : "comment mettre un petit badge rouge sur une icône en CSS ?"
+  → réponse : position: absolute avec des valeurs négatives pour sortir de l'icône.
+    top: -6px et right: -6px le décalent vers le haut à droite.
+    border-radius: 50% le rend circulaire.
+*/
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: var(--color-accent);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== NAVIGATION ========== */
+.navbar {
+  background-color: var(--color-nav-bg);
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  gap: 20px;
+}
+
+.nav-categories {
+  position: relative; /* nécessaire pour que le dropdown se positionne en dessous du bouton */
+}
+
+.categories-btn {
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/*
+  Menu déroulant : caché par défaut, affiché au survol.
+  J'ai utilisé un chatbot pour savoir comment faire ça sans JavaScript.
+  Prompt : "comment faire un menu dropdown qui s'ouvre au hover sans JS ?"
+  → réponse : display:none par défaut, puis .parent:hover .dropdown { display: block }
+  position: absolute le sort du flux normal de la page pour qu'il flotte au dessus du contenu.
+*/
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* se place juste en dessous du bouton */
+  left: 0;
+  background-color: white;
+  border: 1px solid var(--color-border);
+  min-width: 200px;
+  list-style: none;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-categories:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  display: block;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: white;
+  background-color: rgba(255,255,255,0.15);
+}
+
+/* ========== HERO ========== */
+/*
+  Fond dégradé : j'ai utilisé un chatbot pour savoir comment faire ça.
+  Prompt : "comment faire un fond avec dégradé de couleur en CSS ?"
+  → réponse : linear-gradient(direction, couleur1 %, couleur2)
+  135deg = diagonale de haut gauche vers bas droite
+*/
+.hero {
+  background: linear-gradient(135deg, var(--color-primary) 60%, #2a5f8f);
+  color: white;
+  padding: 70px 40px;
+  text-align: center;
+}
+
+.hero-title {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.hero-title span {
+  color: var(--color-accent);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 28px;
+}
+
+.hero-btn {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: white;
+  padding: 12px 32px;
+  text-decoration: none;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.hero-btn:hover {
+  background-color: #c0392b;
+}
+
+/* ========== PRODUITS ========== */
+.products-section {
+  padding: 50px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--color-accent);
+  display: inline-block;
+}
+
+/*
+  Grille de produits : j'ai utilisé un chatbot pour savoir comment faire 4 colonnes égales.
+  Prompt : "comment faire une grille de 4 colonnes égales en CSS ?"
+  → réponse : display: grid + grid-template-columns: repeat(4, 1fr)
+  1fr = 1 fraction de l'espace disponible, donc chaque colonne prend 25%.
+*/
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.product-img {
+  position: relative;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-emoji {
+  font-size: 4rem;
+  opacity: 0.85;
+}
+
+/* Badge NEW en haut à gauche de l'image du produit */
+.badge-new {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--color-accent);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.product-info {
+  padding: 14px;
+}
+
+.product-name {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+  min-height: 40px;
+}
+
+.product-price {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 9px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--color-accent);
+}
+
+/* ========== COULEURS ========== */
+.colors-section {
+  background-color: white;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.colors-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap; /* flex-wrap permet aux éléments de passer à la ligne si l'écran est trop petit */
+  margin-top: 20px;
+}
+
+.color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.color-swatch {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+/* scale(1.1) agrandit l'élément de 10% au survol — effet visuel simple */
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-item span {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background-color: var(--color-primary);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 24px;
+  font-size: 0.85rem;
+  line-height: 2;
+}
